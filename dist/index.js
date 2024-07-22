@@ -62,7 +62,6 @@ try {
     requestBasePath.concat(requestQueryPath)
   );
   core.debug("Code Pipeline: request url: " + requestUrl.href);
-  console.log("Code Pipeline: request url: " + requestUrl);
 
   //request body parameters
   const reqBodyObj = assembleRequestBodyObject(
@@ -84,10 +83,6 @@ try {
           "Code Pipeline: received response body: " +
             utils.convertObjectToJson(response.data)
         );
-        console.log(
-          "Code Pipeline: received response body: " +
-            utils.convertObjectToJson(response.data)
-        );
         // promote could have passed or failed
         setOutputs(core, response.data);
         setId = response.data.setId;
@@ -96,7 +91,6 @@ try {
       (error) => {
         // there was a problem with the request to CES
         if (error.response !== undefined) {
-          console.log("error:", error);
           core.debug(
             "Code Pipeline: received error code: " + error.response.status
           );
@@ -113,10 +107,8 @@ try {
     .then(
       (response) => {
         console.log("The promote request submitted successfully.");
-        console.log("SET ID :",setId);
       },
       (error) => {
-        console.log("error -- :", error);
         core.debug(error.stack);
         core.setFailed(error.message);
       }
@@ -130,7 +122,6 @@ try {
     // no need to fail the action if the promote is never attempted
     console.log(error.message);
   } else {
-    console.log("catch error ::");
     core.debug(error.stack);
     console.error("An error occurred while starting the promote.");
     core.setFailed(error.message);
@@ -212,7 +203,6 @@ function setOutputs(core, responseBody) {
     core.setOutput("output_json", utils.convertObjectToJson(responseBody));
     core.setOutput("set_id", responseBody.setId);
     core.setOutput("url", responseBody.url);
-    core.setOutput("message", responseBody.message);
 
     const isTimedOut =
       utils.stringHasContent(responseBody.message) &&
@@ -273,7 +263,6 @@ function handleResponseBody(responseBody) {
     );
   } else {
     // success
-    console.log("#############RRR :: ",responseBody);
     console.log(utils.getStatusMessageToPrint(responseBody.message));
     return responseBody;
   }
