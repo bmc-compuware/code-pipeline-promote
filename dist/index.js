@@ -35,6 +35,8 @@ try {
     "dpenvlst",
     "system",
     "override",
+    "mname",
+    "mtype"
   ];
 
   //retrieve input values
