@@ -117,9 +117,9 @@ try {
     console.log(error.message);
   } else {
     core.debug(error.stack);
-    console.error("An error occurred while starting the promote.");
-    core.setFailed(error.message);
+    console.error("An error occurred while starting the promote.");    
   }
+  core.setFailed(error.message);
 }
 
 /** *****************************************************************************************/
@@ -133,27 +133,27 @@ function validateRequiredParms(input) {
   let isValid = true;
   if (!utils.stringHasContent(input.ces_url)) {
     isValid = false;
-    console.error(`Missing input:ces_url must be specified.`);
+    console.error(`Missing input: ces_url must be specified.`);
   }
 
   if (!utils.stringHasContent(input.ces_token)) {
     isValid = false;
-    console.error(`Missing input:ces_token must be specified.`);
+    console.error(`Missing input: ces_token must be specified.`);
   }
 
   if (!utils.stringHasContent(input.srid)) {
     isValid = false;
-    console.error(`Missing input:srid must be specified.`);
+    console.error(`Missing input: srid must be specified.`);
   }
 
   if (!utils.stringHasContent(input.container_id)) {
     isValid = false;
-    console.error(`Missing input: Container id must be specified.`);
+    console.error(`Missing input: container_id must be specified.`);
   }
 
   if (!utils.stringHasContent(input.level)) {
     isValid = false;
-    console.error(`Missing input: Level must be specified.`);
+    console.error(`Missing input: level must be specified.`);
   }
 
   return isValid;
