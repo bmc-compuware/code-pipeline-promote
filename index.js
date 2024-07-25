@@ -157,7 +157,9 @@ function validateRequiredParms(input) {
 
   console.log("Type :", typeof input.container_type);
   console.log("Type has value :", utils.stringHasContent(input.container_type));
-  console.log("Type has value :", !utils.stringHasContent(input.container_type) || input.container_type != "A" || input.container_type != "R");
+  console.log("Type has value :", input.container_type != "A");
+  console.log("Type has value :", input.container_type != "R");
+  console.log("Type has value :", !utils.stringHasContent(input.container_type) || input.container_type != "A" || input.container_type != "A");
 
   if (!utils.stringHasContent(input.container_type) || input.container_type != "A" || input.container_type != "R") {
     isValid = false;
