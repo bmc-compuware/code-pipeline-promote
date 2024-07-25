@@ -153,16 +153,6 @@ On the New Secret page, paste the token that was copied earlier and click the Ad
 
 ![Saving secret](media/github-saving-secret.png)
 
-### Save the certificate as a GitHub Secret
-
-Once you get the certificate, copy the 64bit text without and line breaks. In GitHub go to Settings > Secrets and click the button for New Repository Secret.
-
-![Secrets page](media/github-secrets-settings.png)
-
-On the New Secret page, paste the certificate that was copied earlier and click the Add secret button. Make a note of the name you give the secret so that you can easily use it in your workflow script.
-
-![Saving secret](media/github-saving-certificate.png)
-
 ### Troubleshooting
 
 To enable debug logging in your GitHub actions workflow, see the guide [here](https://docs.github.com/en/actions/managing-workflow-runs/enabling-debug-logging).
