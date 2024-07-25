@@ -161,7 +161,7 @@ function validateRequiredParms(input) {
     console.error(`Missing input: srid must be specified.`);
   }
 
-  if (!utils.stringHasContent(input.container_type) || input.container_type !== 'A' || input.container_type === 'R') {
+  if (!utils.stringHasContent(input.container_type) || input.container_type !== 'A' || input.container_type !== 'R') {
     isValid = false;
     console.error(`Missing input: container_type must be specified. The container_type can be either A or R.`);
   }
