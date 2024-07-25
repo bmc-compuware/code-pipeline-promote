@@ -13,8 +13,11 @@ inputs:
   srid:
     description: 'The ID of the instance of BMC AMI DevX Code Pipeline to connect to'
     required: true  
+  container_type:
+    description: 'The container type for which you intend to promote tasks'
+    required: true
   container_id:
-    description: 'The container for which you intend to promote tasks'
+    description: 'The container id for which you intend to promote tasks'
     required: true
   level:
     description: 'The level that the tasks exist at in the assignment'

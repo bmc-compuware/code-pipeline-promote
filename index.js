@@ -18,6 +18,7 @@ try {
   let inputs = [
     "ces_url",
     "srid",
+    "container_type",
     "container_id",
     "level",
     "ces_token",
@@ -49,7 +50,13 @@ try {
   }
 
   // base url for promote
-  const requestBasePath = `/ispw/${inputs.srid}/assignments/${inputs.container_id}/tasks/promote?level=${inputs.level}`;
+  let requestBasePath;
+  if (inputs.container_type == "A") {
+    requestBasePath = `/ispw/${inputs.srid}/assignments/${inputs.container_id}/tasks/promote?level=${inputs.level}`;
+  } else {
+    requestBasePath = `/ispw/${inputs.srid}/releases/${inputs.container_id}/tasks/promote?level=${inputs.level}`;
+  }
+ 
   // add request query parameters
   let requestQueryPath = prepareRequestQueryPath(inputs);
   // final request url
