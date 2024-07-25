@@ -162,6 +162,7 @@ function validateRequiredParms(input) {
   }
 
   console.log("Type :", typeof input.container_type);
+  console.log("Type has value :", utils.stringHasContent(input.container_type));
 
   if (!utils.stringHasContent(input.container_type) || input.container_type !== "A" || input.container_type !== "R") {
     isValid = false;
