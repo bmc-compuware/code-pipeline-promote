@@ -141,13 +141,12 @@ try {
 // END OF MAIN SCRIPT, START OF FUNCTION DEFINITIONS
 /** *****************************************************************************************/
 
-const allowedContainerTypes = ['A','R'];
-
 /**
  * Validate inputs
  */
 function validateRequiredParms(input) {
   let isValid = true;
+  const allowedContainerTypes = ['A','R'];
   if (!utils.stringHasContent(input.ces_url)) {
     isValid = false;
     console.error(`Missing input: ces_url must be specified.`);
