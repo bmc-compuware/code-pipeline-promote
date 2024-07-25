@@ -40,8 +40,6 @@ try {
     "mtype"
   ];
 
-  const allowedContainerTypes = (/* unused pure expression or super */ null && (['A','R']));
-
   //retrieve input values
   inputs = utils.retrieveInputs(core, inputs);
 
@@ -143,6 +141,8 @@ try {
 // END OF MAIN SCRIPT, START OF FUNCTION DEFINITIONS
 /** *****************************************************************************************/
 
+const allowedContainerTypes = ['A','R'];
+
 /**
  * Validate inputs
  */
@@ -162,12 +162,6 @@ function validateRequiredParms(input) {
     isValid = false;
     console.error(`Missing input: srid must be specified.`);
   }
-
-  console.log("Type :", typeof input.container_type);
-  console.log("Type has value :", utils.stringHasContent(input.container_type));
-  console.log("Type has value :", input.container_type != "A");
-  console.log("Type has value :", input.container_type != "R");
-  console.log("Type has value :", !utils.stringHasContent(input.container_type) || input.container_type != "A" || input.container_type != "A");
 
   if (!utils.stringHasContent(input.container_type) || !allowedContainerTypes.includes(input.container_type )) {
     isValid = false;
