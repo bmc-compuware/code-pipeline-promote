@@ -104,7 +104,7 @@ jobs:
 | `container_type` | Required | The container type for which you intend to promote tasks. The container type can be either A or R. |
 | `container_id` | Required | The container id for which you intend to promote tasks. |
 | `level` | Required | The level that the tasks exist at in the assignment. |
-| `mname` | Optional | Component with this name in the container will be promoted. |
+| `mname` | Optional | Component with this name in the container will be promoted. You must additionally give the mtype if you specified the mname.|
 | `mtype` | Optional | Component with this type in the container will be promoted. |
 | `runtime_configuration` | Optional | The runtime configuration used when connecting to BMC AMI DevX Code Pipeline. |
 | `change_type` | Optional | The change type of this request. S for standard, I for incidental, or E for emergency. Default value is S |
@@ -127,21 +127,29 @@ jobs:
 
 ### Create a token in Common Enterprise Services (CES)
 
-In order to use this action, you must have an instance of the CES product installed on one of your runners. Once that is complete, you will need to open CES in your web browser and create a token to be used during requests. To set up a new host connection, go to the hamburger menu in the upper left corner and select Host Connections.
+In order to use this action, you must have an instance of the CES product installed on one of your runners. Once that is complete, you will need to open CES in your web browser and create a token to be used during requests. 
 
-![CES menu](media/ces-menu.png "CES menu")
+To set up a new host connection, go to the **Administration** menu in the upper left corner and select **Host connections**.
 
-On the Host Connection Settings page, click "Add." Set up the host connection to be used for Code Pipeline and click OK when finished.
+![CES Home](media/main-page-host-connection.jpeg "CES Home")
 
-Then, go back to the menu and select Security. On the Security page, click Add and the Personal Access Token dialog will come up.
+On the Host Connection Settings page, click **Add**. Set up the host connection to be used for Code Pipeline and click **Save** when finished.
 
-![CES token dialog](media/ces-token-dialog.png)
+![Host connections](media/host-connection.jpeg "Host connections")
 
-On the Personal Access Token dialog, select the host that you want to create a token for, and enter in the mainframe username and password.
+Then, go back to the menu and select **Security**. 
+
+![CES Home](media/main-page-security.jpeg "CES Home")
+
+On the Security page, click **Add** and the **Personal Access Token dialog** will come up.
+
+![CES Personal Access Token](media/personal-access-token.jpeg)
+
+On the Personal Access Token dialog, select the host that you want to create a token for, and enter in the mainframe **username** and **password**.
 
 Once done, there will be a new token in the table on the Security page
 
-![Security page](media/ces-token.png)
+![CES Personal Access Token](media/view-token.jpeg)
 
 ### Save the token as a GitHub Secret
 
