@@ -18,6 +18,7 @@ try {
   let inputs = [
     "ces_url",
     "srid",
+    "container_type",
     "container_id",
     "level",
     "ces_token",
@@ -49,7 +50,13 @@ try {
   }
 
   // base url for promote
-  const requestBasePath = `/ispw/${inputs.srid}/assignments/${inputs.container_id}/tasks/promote?level=${inputs.level}`;
+  let requestBasePath;
+  if (inputs.container_type == "A") {
+    requestBasePath = `/ispw/${inputs.srid}/assignments/${inputs.container_id}/tasks/promote?level=${inputs.level}`;
+  } else {
+    requestBasePath = `/ispw/${inputs.srid}/releases/${inputs.container_id}/tasks/promote?level=${inputs.level}`;
+  }
+ 
   // add request query parameters
   let requestQueryPath = prepareRequestQueryPath(inputs);
   // final request url
@@ -133,6 +140,7 @@ try {
  */
 function validateRequiredParms(input) {
   let isValid = true;
+  const allowedContainerTypes = ['A','R'];
   if (!utils.stringHasContent(input.ces_url)) {
     isValid = false;
     console.error(`Missing input: ces_url must be specified.`);
@@ -146,6 +154,11 @@ function validateRequiredParms(input) {
   if (!utils.stringHasContent(input.srid)) {
     isValid = false;
     console.error(`Missing input: srid must be specified.`);
+  }
+
+  if (!utils.stringHasContent(input.container_type) || !allowedContainerTypes.includes(input.container_type )) {
+    isValid = false;
+    console.error(`Missing input: container_type must be specified. The container_type can be either A or R.`);
   }
 
   if (!utils.stringHasContent(input.container_id)) {

@@ -1,0 +1,86 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  codepipeline-promote-1:
+    name: Promote task in Assignment using level
+    runs-on: [self-hosted, codepipeline-win]
+    steps:
+      - name: Promote
+        uses: bmc-compuware/code-pipeline-promote@v1.0
+        id: promote
+        with:
+          ces_url: "http://ces-ws:48080/"
+          ces_token: ${{ secrets.CES_TOKEN }}
+          srid: ispw
+          runtime_configuration: TPTP
+          container_type: A
+          container_id: PLAY000001
+          level: DEV1
+      - name: Get the SET ID for the promote
+        run: echo "The Code Pipeline SET used for the promote is ${{ steps.promote.outputs.set_id }}"
+  
+  codepipeline-promote-2:
+    name: Promote task in Assignment using component name and type
+    runs-on: [self-hosted, codepipeline-win]
+    steps:
+      - name: Promote
+        uses: bmc-compuware/code-pipeline-promote@v1.0
+        id: promote
+        with:
+          ces_url: "http://ces-ws:48080/"
+          ces_token: ${{ secrets.CES_TOKEN }}
+          srid: ispw
+          runtime_configuration: TPTP
+          container_type: A
+          container_id: PLAY000001
+          level: STG1
+          mname: TREXX04
+          mtype: CLST
+      - name: Get the SET ID for the promote
+        run: echo "The Code Pipeline SET used for the promote is ${{ steps.promote.outputs.set_id }}"
+
+  codepipeline-promote-3:
+    name: Promote task in Release using level
+    runs-on: [self-hosted, codepipeline-win]    
+    steps:
+      - name: Promote
+        uses: bmc-compuware/code-pipeline-promote@v1.0
+        id: promote
+        with:
+          ces_url: "http://ces-ws:48080/"
+          ces_token: ${{ secrets.CES_TOKEN }}
+          srid: ispw
+          runtime_configuration: TPTP
+          container_type: R
+          container_id: PRMTEST
+          level: DEV2
+      - name: Get the SET ID for the promote
+        run: echo "The Code Pipeline SET used for the promote is ${{ steps.promote.outputs.set_id }}"
+  
+  codepipeline-promote-4:
+    name: Promote task in Release using component name and type
+    runs-on: [self-hosted, codepipeline-win]    
+    steps:
+      - name: Promote
+        uses: bmc-compuware/code-pipeline-promote@v1.0
+        id: promote
+        with:
+          ces_url: "http://ces-ws:48080/"
+          ces_token: ${{ secrets.CES_TOKEN }}
+          srid: ispw
+          runtime_configuration: TPTP
+          container_type: R
+          container_id: PRMTEST
+          level: STG2
+          mname: TPROG09
+          mtype: COB
+      - name: Get the SET ID for the promote
+        run: echo "The Code Pipeline SET used for the promote is ${{ steps.promote.outputs.set_id }}"
