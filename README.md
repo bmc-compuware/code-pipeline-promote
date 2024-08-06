@@ -108,8 +108,8 @@ jobs:
 | `mtype` | Optional | Component with this type in the container will be promoted. |
 | `runtime_configuration` | Optional | The runtime configuration used when connecting to BMC AMI DevX Code Pipeline. |
 | `change_type` | Optional | The change type of this request. S for standard, I for incidental, or E for emergency. Default value is S |
-| `execution_status` | Optional | The flag to indicate whether the generate should happen immediately, or should be held. The default is 'I'. |
-| `auto_deploy` | Optional | Generates can be set up to automatically Deploy as well by an option set up by the Code Pipeline. The default is to not use Auto Deploy i.e. false. If the Auto Deploy option is set-up through Code Pipeline, then you may use this option to automatically deploy. Possible values are true or false. |
+| `execution_status` | Optional | The flag to indicate whether the promote should happen immediately, or should be held. The default is 'I'. |
+| `auto_deploy` | Optional | Promote can be set up to automatically Deploy as well by an option set up by the Code Pipeline. The default is to not use Auto Deploy i.e. false. If the Auto Deploy option is set-up through Code Pipeline, then you may use this option to automatically deploy. Possible values are true or false. |
 | `dpenvlst` | Optional | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. |
 | `system` | Optional | Allows you to specify a specific System for the Deploy. |
 | `override` | Optional | Specify true to override a higher version of the task during promote. Use with caution. |
