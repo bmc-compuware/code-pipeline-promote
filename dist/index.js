@@ -19,8 +19,8 @@ const core = __nccwpck_require__(53885);
 const github = __nccwpck_require__(73094);
 const utils = __nccwpck_require__(74408);
 
-// let setID;
-// let setUrl;
+let setID;
+let setUrl;
 
 try {
   // Inputs received from workflow
@@ -112,17 +112,17 @@ try {
     .then(
       (response) => {
         console.log("The promote request submitted successfully.");
-        // let skipWaitingForSetCompletion = false;
-        // if (!skipWaitingForSetCompletion) {
-        //   if (setID) {
-        //     utils.pollSetStatus(setUrl, setID, inputs.ces_token, "Deploy");
-        //   }
-        // }
-        // if (skipWaitingForSetCompletion) {
-        //   console.log(
-        //     "Skip waiting for the completion of the set for this job..."
-        //   );
-        // }
+        let skipWaitingForSetCompletion = false;
+        if (!skipWaitingForSetCompletion) {
+          if (setID) {
+            utils.pollSetStatus(setUrl, setID, inputs.ces_token, "Promote");
+          }
+        }
+        if (skipWaitingForSetCompletion) {
+          console.log(
+            "Skip waiting for the completion of the set for this job..."
+          );
+        }
       },
       (error) => {
         core.debug(error.stack);
@@ -225,15 +225,15 @@ function setOutputs(core, responseBody) {
       responseBody.message.includes("timed out");
     core.setOutput("is_timed_out", isTimedOut);
 
-    // if (responseBody.setId) {
-    //   console.log("Code Pipeline: Set Id - ", responseBody.setId);
-    //   setID = responseBody.setId;
-    // }
+    if (responseBody.setId) {
+      console.log("Code Pipeline: Set Id - ", responseBody.setId);
+      setID = responseBody.setId;
+    }
 
-    // if (responseBody.url) {
-    //   console.log("Code Pipeline: Set Info Url - ", responseBody.url);
-    //   setUrl = responseBody.url;
-    // }
+    if (responseBody.url) {
+      console.log("Code Pipeline: Set Info Url - ", responseBody.url);
+      setUrl = responseBody.url;
+    }
   }
 }
 
