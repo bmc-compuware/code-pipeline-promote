@@ -44,6 +44,7 @@
     "prettier": "^3.3.3"
   },
   "overrides": {
-    "serialize-javascript": "7.0.5"
+    "serialize-javascript": "7.0.5",
+    "undici": "6.29.1"
   }
 }
